@@ -7,8 +7,8 @@
             <input
             type="text"
             placeholder="Search"
-            v-model="searchedContent">
-            <div class='button'>Search</div>
+            v-model="keywordSearch">
+            <div class='button' @click="$emit('search', keywordSearch)">Search</div>
         </div>
     </header>
 </template>
@@ -17,7 +17,7 @@
 export default {
     data() {
         return {
-            searchedContent: '',
+            keywordSearch: '',
         }
     },
 }
