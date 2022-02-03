@@ -1,5 +1,5 @@
 <template>
-    <div class="card col-2">
+    <div class="card col-1">
         <!-- CARD IMAGE -->
         <div class="card-img">
             <img v-if="card.poster_path != null" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`">
@@ -9,18 +9,16 @@
         <div class="card-data">
             <ul>
                 <!-- TITLES -->
-                <li><strong>Titolo:</strong> {{card.title}}</li>
-                <li><strong>Titolo originale:</strong> {{card.original_title}}</li>
+                <li><strong>Titolo:</strong> {{name}}</li>
+                <li><strong>Titolo originale:</strong> {{originalName}}</li>
                 <!-- LANGUAGE -->
                 <li>
                     <strong>Lingua originale:</strong>
                     <span v-if="card.original_language == null">Non pervenuta</span>
-                    <img v-else :src="languagesflags(card.original_language)" alt="languages flag">
+                    <img class="flag" v-else :src="languagesflags(card.original_language)" alt="languages flag">
                 <li>
                 <!-- VOTE -->
                 <li><strong>Voto:</strong> {{card.vote_average}}</li>
-                <!-- OVERVIEW -->
-                <li><strong>Overview:</strong> {{card.overview}}</li>
             </ul>
         </div>
     </div>
@@ -30,6 +28,8 @@
 export default {
     props: {
         card: Object,
+        name:String,
+        originalName:String,
     },
     methods: {
         // LANGUAGE FLAG PATH FUNCTION
@@ -70,6 +70,9 @@ export default {
             font-size: 12px;
             list-style: none;
             color: #fff;
+        }
+        .flag{
+            margin-left: 10px;
         }
     }
     // hover effect

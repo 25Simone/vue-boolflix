@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <header-box @search="searchResults" />
-    <main-content :cards="resultsList" />
+    <main-content :moviesCards="moviesResultsList" :seriesCards="seriesResultsList" />
   </div>
 </template>
 
@@ -19,18 +19,28 @@ export default {
   data() {
     return {
       // SEARCH RESULTS LIST
-      resultsList: [],
+      moviesResultsList: [],
+      seriesResultsList: [],
     };
   },
   methods: {
     searchResults(keyword) {
-      axios
+        axios
         .get(
           `https://api.themoviedb.org/3/search/movie?query=${keyword}&api_key=0b8af459fa891cf5a8cc79e1ded434fb`
         )
         .then((response) => {
           console.log(response.data.results); // DEBUG
-          this.resultsList = response.data.results;
+          this.moviesResultsList = response.data.results;
+        });
+
+        axios
+        .get(
+          `https://api.themoviedb.org/3/search/tv?query=${keyword}&api_key=0b8af459fa891cf5a8cc79e1ded434fb`
+        )
+        .then((response) => {
+          console.log(response.data.results); // DEBUG
+          this.seriesResultsList = response.data.results;
         });
     },
   },
