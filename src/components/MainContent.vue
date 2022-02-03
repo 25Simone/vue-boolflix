@@ -1,6 +1,7 @@
 <template>
     <main>
         <div class="container">
+            <!-- CARDS -->
             <div class="row">
                 <card-box
                 v-for="(card, i) in cards"

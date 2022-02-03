@@ -1,13 +1,17 @@
 <template>
     <header class="container-fluid">
+        <!-- LOGO -->
         <div class="logo">
             <img class="img-fluid" src="@/assets/boolflix-logo.png" alt="logo boolflix">
         </div>
+        <!-- INPUT AREA -->
         <div class="input-area">
             <input
             type="text"
             placeholder="Search"
-            v-model="keywordSearch">
+            v-model="keywordSearch"
+            @keyup.enter="$emit('search', keywordSearch)"
+            >
             <div class='button' @click="$emit('search', keywordSearch)">Search</div>
         </div>
     </header>
