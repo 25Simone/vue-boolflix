@@ -4,15 +4,22 @@
             <img class="img-fluid" src="@/assets/boolflix-logo.png" alt="logo boolflix">
         </div>
         <div class="input-area">
-            <input type="text">
-            <div class='button'></div>
+            <input
+            type="text"
+            placeholder="Search"
+            v-model="searchedContent">
+            <div class='button'>Search</div>
         </div>
     </header>
 </template>
 
 <script>
 export default {
-    
+    data() {
+        return {
+            searchedContent: '',
+        }
+    },
 }
 </script>
 
