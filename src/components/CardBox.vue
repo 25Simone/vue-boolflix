@@ -2,13 +2,24 @@
     <div class="card col-2">
         <!-- CARD IMAGE -->
         <div class="card-img">
-            <img class="img-fluid" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`">
+            <img v-if="card.poster_path != null" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`">
+            <img v-else class="img-fluid" src="https://www.sirem.org/wp-content/uploads/2021/04/no-image.jpg" alt="not found placeholder">
         </div>
+        <!-- CARD DATA -->
         <div class="card-data">
             <ul>
+                <!-- TITLES -->
                 <li><strong>Titolo:</strong> {{card.title}}</li>
                 <li><strong>Titolo originale:</strong> {{card.original_title}}</li>
+                <!-- LANGUAGE -->
+                <li>
+                    <strong>Lingua originale:</strong>
+                    <span v-if="card.original_language == null">Non pervenuta</span>
+                    <img v-else :src="languagesflags(card.original_language)" alt="languages flag">
+                <li>
+                <!-- VOTE -->
                 <li><strong>Voto:</strong> {{card.vote_average}}</li>
+                <!-- OVERVIEW -->
                 <li><strong>Overview:</strong> {{card.overview}}</li>
             </ul>
         </div>
@@ -19,6 +30,12 @@
 export default {
     props: {
         card: Object,
+    },
+    methods: {
+        // LANGUAGE FLAG PATH FUNCTION
+        languagesflags(language){
+            return "/flags/" + language + ".png";
+        }
     }
 }
 </script>
