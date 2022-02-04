@@ -26,9 +26,7 @@ export default {
     };
   },
   mounted() {
-    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.api_key}&page=1`).then((response) => {
-      this.moviesResultsList = response.data.results;
-    })
+    // this.generalApiCall(this.moviesResultsList, 'movie/popular', 'page', 1)
   },
 
   methods: {
@@ -38,22 +36,21 @@ export default {
     },
 
     async showMovies(keyword) {
-      this.moviesResultsList = await this.callApi('movie', keyword);
+      this.moviesResultsList = await this.callApi('movie', 'query', keyword);
     },
 
     async showTv(keyword) {
-      this.seriesResultsList = await this.callApi('tv', keyword);
+      this.seriesResultsList = await this.callApi('tv', 'query', keyword);
     },
 
-    async callApi(type, keyword) {
+    
+    async generalApiCall(list, type, query, keyword) {
+      list = await this.callApi(type, query, keyword);
+    },
 
-      // declare the params
-      const params = {
-        query: keyword,
-        api_key: this.api_key,
-      };
+    async callApi(type, query, keyword) {
 
-      const results = await axios.get(`https://api.themoviedb.org/3/search/${type}`, {params}).then((response) => {
+      const results = await axios.get(`https://api.themoviedb.org/3/search/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
         console.log('Api risposta'); // DEBUG
         console.log(response.data.results) // DEBUG
         return response.data.results;
