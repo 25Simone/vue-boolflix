@@ -2,7 +2,7 @@
     <main>
         <!-- MOVIES -->
         <div class="container-fluid">
-            <h1>MOVIES</h1>
+            <h1 class="section-title">MOVIES</h1>
             <!-- CARDS -->
             <div class="row">
                 <card-box
@@ -17,7 +17,7 @@
 
         <!-- TV SERIES -->
         <div class="container-fluid">
-            <h1>TV SERIES</h1>
+            <h1 class="section-title">TV SERIES</h1>
             <!-- CARDS -->
             <div class="row">
                 <card-box

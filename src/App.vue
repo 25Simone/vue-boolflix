@@ -26,24 +26,25 @@ export default {
     };
   },
   methods: {
-    searchResults(keyword) {
-        axios
-        .get(
-          `https://api.themoviedb.org/3/search/movie?query=${keyword}&api_key=0b8af459fa891cf5a8cc79e1ded434fb`
-        )
-        .then((response) => {
-          console.log(response.data.results); // DEBUG
-          this.moviesResultsList = response.data.results;
-        });
+    async searchResults(keyword){
+      this.moviesResultsList = await this.callApi('movie', keyword);
+      this.seriesResultsList = await this.callApi('tv', keyword);
+    },
 
-        axios
-        .get(
-          `https://api.themoviedb.org/3/search/tv?query=${keyword}&api_key=0b8af459fa891cf5a8cc79e1ded434fb`
-        )
-        .then((response) => {
-          console.log(response.data.results); // DEBUG
-          this.seriesResultsList = response.data.results;
-        });
+    async callApi(type, keyword) {
+
+      // declare the params
+      const params = {
+        query: keyword,
+        api_key: this.api_key,
+      };
+
+      const results = await axios.get(`https://api.themoviedb.org/3/search/${type}`, {params}).then((response) => {
+        console.log('Api risposta'); // DEBUG
+        console.log(response.data.results) // DEBUG
+        return response.data.results;
+      })
+      return results;
     },
   },
 };
