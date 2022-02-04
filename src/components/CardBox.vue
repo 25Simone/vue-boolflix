@@ -18,7 +18,20 @@
                     <img class="flag" v-else :src="languagesflags(card.original_language)" alt="languages flag">
                 <li>
                 <!-- VOTE -->
-                <li><strong>Voto:</strong> {{card.vote_average}}</li>
+                <li>
+                    <strong>Voto: </strong>
+                    <!-- STARS -->
+                    <span
+                    class="stars"
+                    v-for="(star, index) in 5"
+                    :key="index"
+                    >
+                        <!-- FULL STARS -->
+                        <i v-if="index <= Math.floor(card.vote_average / 2)" class="fas fa-star"></i>
+                        <!-- EMPTY STARS -->
+                        <i v-else class="far fa-star"></i>
+                    </span>
+                </li>
             </ul>
         </div>
     </div>
