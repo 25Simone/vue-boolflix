@@ -32,18 +32,9 @@ export default {
 
   methods: {
     searchResults(keyword){
-      this.showMovies(keyword);
-      this.showTv(keyword);
+      this.generalMovieApiCall('search', 'movie', 'query', keyword);
+      this.generalTvApiCall('search', 'tv', 'query', keyword);
     },
-
-    async showMovies(keyword) {
-      this.moviesResultsList = await this.callApi('search', 'movie', 'query', keyword);
-    },
-
-    async showTv(keyword) {
-      this.seriesResultsList = await this.callApi('search', 'tv', 'query', keyword);
-    },
-
     
     async generalMovieApiCall(command, type, query, keyword) {
       this.moviesResultsList = await this.callApi(command, type, query, keyword);
