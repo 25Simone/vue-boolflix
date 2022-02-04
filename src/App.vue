@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <header-box @search="searchResults" />
-    <main-content :moviesCards="moviesResultsList" :seriesCards="seriesResultsList" />
+    <main-content
+    :moviesCards="moviesResultsList"
+    :seriesCards="seriesResultsList"
+    :movieSectionTitle="movieSection"
+    :tvSEriesSectionTitle="tvSeriesSection"
+    />
   </div>
 </template>
 
@@ -23,11 +28,15 @@ export default {
       seriesResultsList: [],
       // API KEY
       api_key: '0b8af459fa891cf5a8cc79e1ded434fb',
+      movieSection: '',
+      tvSeriesSection: '',
     };
   },
   mounted() {
     this.generalMovieApiCall('movie', 'popular', 'page', 1)
+    this.movieSection = 'I film più popolari su Netflix:'
     this.generalTvApiCall('tv', 'popular', 'page', 1)
+    this.tvSeriesSection = 'Le serie Tv più popolari su Netflix:'
   },
 
   methods: {
