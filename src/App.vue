@@ -25,9 +25,23 @@ export default {
       api_key: '0b8af459fa891cf5a8cc79e1ded434fb',
     };
   },
+  mounted() {
+    axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${this.api_key}&page=1`).then((response) => {
+      this.moviesResultsList = response.data.results;
+    })
+  },
+
   methods: {
-    async searchResults(keyword){
+    searchResults(keyword){
+      this.showMovies(keyword);
+      this.showTv(keyword);
+    },
+
+    async showMovies(keyword) {
       this.moviesResultsList = await this.callApi('movie', keyword);
+    },
+
+    async showTv(keyword) {
       this.seriesResultsList = await this.callApi('tv', keyword);
     },
 

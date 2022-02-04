@@ -49,5 +49,9 @@ export default {
 <style lang="scss" scoped>
 .container-fluid{
     margin: 50px 0;
+    .row{
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
 }
 </style>

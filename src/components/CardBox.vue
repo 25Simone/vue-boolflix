@@ -1,6 +1,6 @@
 <template>
     <!-- CARD -->
-    <div class="card col-1">
+    <div class="card col-2">
         <!-- CARD IMAGE -->
         <div class="card-img">
             <img v-if="card.poster_path != null" class="img-fluid" :src="`https://image.tmdb.org/t/p/original${card.poster_path}`">
@@ -57,8 +57,7 @@ export default {
 <style lang="scss" scoped>
 .card{
     padding: 0;
-    margin: 10px;
-    border: 1px solid #1b1b1b;
+    border: 2px solid #1b1b1b;
     cursor: pointer;
     .card-img{
         width: 100%;
@@ -81,9 +80,12 @@ export default {
             // reset
             margin: 0;
             padding: 0;
-            font-size: 12px;
+            font-size: 15px;
             list-style: none;
             color: #fff;
+            li{
+                margin-top: 10px;
+            }
         }
         .flag{
             margin-left: 10px;
