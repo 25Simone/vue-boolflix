@@ -26,7 +26,8 @@ export default {
     };
   },
   mounted() {
-    // this.generalApiCall(this.moviesResultsList, 'movie/popular', 'page', 1)
+    this.generalMovieApiCall('movie', 'popular', 'page', 1)
+    this.generalTvApiCall('tv', 'popular', 'page', 1)
   },
 
   methods: {
@@ -36,21 +37,25 @@ export default {
     },
 
     async showMovies(keyword) {
-      this.moviesResultsList = await this.callApi('movie', 'query', keyword);
+      this.moviesResultsList = await this.callApi('search', 'movie', 'query', keyword);
     },
 
     async showTv(keyword) {
-      this.seriesResultsList = await this.callApi('tv', 'query', keyword);
+      this.seriesResultsList = await this.callApi('search', 'tv', 'query', keyword);
     },
 
     
-    async generalApiCall(list, type, query, keyword) {
-      list = await this.callApi(type, query, keyword);
+    async generalMovieApiCall(command, type, query, keyword) {
+      this.moviesResultsList = await this.callApi(command, type, query, keyword);
     },
 
-    async callApi(type, query, keyword) {
+    async generalTvApiCall(command, type, query, keyword) {
+      this.seriesResultsList = await this.callApi(command, type, query, keyword);
+    },
 
-      const results = await axios.get(`https://api.themoviedb.org/3/search/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
+    async callApi(command, type, query, keyword) {
+
+      const results = await axios.get(`https://api.themoviedb.org/3/${command}/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
         console.log('Api risposta'); // DEBUG
         console.log(response.data.results) // DEBUG
         return response.data.results;
