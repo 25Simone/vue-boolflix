@@ -21,6 +21,8 @@ export default {
       // SEARCH RESULTS LIST
       moviesResultsList: [],
       seriesResultsList: [],
+      // API KEY
+      api_key: '0b8af459fa891cf5a8cc79e1ded434fb',
     };
   },
   methods: {

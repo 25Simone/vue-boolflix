@@ -1,4 +1,5 @@
 <template>
+    <!-- CARD -->
     <div class="card col-1">
         <!-- CARD IMAGE -->
         <div class="card-img">
