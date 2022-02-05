@@ -1,7 +1,7 @@
 <template>
     <main>
         <!-- MOVIES -->
-        <div class="container-fluid">
+        <div id="movies" class="container-fluid">
             <h1 class="section-title">{{movieSectionTitle}}</h1>
             <!-- CARDS -->
             <div class="row">
@@ -16,7 +16,7 @@
         </div>
 
         <!-- TV SERIES -->
-        <div class="container-fluid">
+        <div id="tv-series" class="container-fluid">
             <h1 class="section-title">{{tvSEriesSectionTitle}}</h1>
             <!-- CARDS -->
             <div class="row">
@@ -43,7 +43,7 @@ export default {
       seriesCards: Array,
       movieSectionTitle: String,
       tvSEriesSectionTitle: String,
-  }
+  },
     
 }
 </script>
@@ -53,7 +53,7 @@ main{
     padding-top: 100px;
 }
 .container-fluid{
-    margin: 50px 0;
+    margin: 70px 0;
     .row{
         flex-wrap: nowrap;
         overflow-x: auto;

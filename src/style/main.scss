@@ -4,6 +4,9 @@
 // FONTAWESOME
 @import url('https://use.fontawesome.com/releases/v5.7.1/css/all.css');
 
+// VARIABLES
+@import './variables.scss';
+
 body{
     background-color: #141414;
 }
@@ -11,9 +14,8 @@ body{
 // BUTTON
 .button{
     padding: 3px 15px;
-    color: #fff;
+    color: $secondary-text-color;
     font-weight: bold;
-    background-color: red;
     cursor: pointer;
 } 
 
@@ -28,4 +30,8 @@ body{
     font-family: Arial, Helvetica, sans-serif;
     margin-bottom: 15px;
     font-size: 30px;
+}
+
+ul{
+    list-style: none;
 }
