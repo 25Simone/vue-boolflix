@@ -49,6 +49,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+main{
+    padding-top: 100px;
+}
 .container-fluid{
     margin: 50px 0;
     .row{

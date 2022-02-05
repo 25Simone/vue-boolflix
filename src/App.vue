@@ -33,16 +33,24 @@ export default {
     };
   },
   mounted() {
-    this.generalMovieApiCall('movie', 'popular', 'page', 1)
-    this.movieSection = 'I film più popolari su Netflix:'
-    this.generalTvApiCall('tv', 'popular', 'page', 1)
-    this.tvSeriesSection = 'Le serie Tv più popolari su Netflix:'
+    this.generalMovieApiCall('movie', 'popular', 'page', 1);
+    this.movieSection = 'I film più popolari su Netflix:';
+    this.generalTvApiCall('tv', 'popular', 'page', 1);
+    this.tvSeriesSection = 'Le serie Tv più popolari su Netflix:';
   },
 
   methods: {
     searchResults(keyword){
+      console.log(keyword)
+      if(keyword != '') {
       this.generalMovieApiCall('search', 'movie', 'query', keyword);
       this.generalTvApiCall('search', 'tv', 'query', keyword);
+      } else {
+        this.generalMovieApiCall('movie', 'popular', 'page', 1)
+        this.movieSection = 'I film più popolari su Netflix:'
+        this.generalTvApiCall('tv', 'popular', 'page', 1)
+        this.tvSeriesSection = 'Le serie Tv più popolari su Netflix:'
+      }
     },
     
     async generalMovieApiCall(command, type, query, keyword) {
@@ -57,7 +65,6 @@ export default {
 
       const results = await axios.get(`https://api.themoviedb.org/3/${command}/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
         console.log('Api risposta'); // DEBUG
-        console.log(response.data.results) // DEBUG
         return response.data.results;
       })
       return results;

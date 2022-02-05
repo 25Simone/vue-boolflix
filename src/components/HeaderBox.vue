@@ -1,26 +1,28 @@
 <template>
   <header class="container-fluid">
     <div>
-      <!-- LOGO -->
-      <div class="logo">
-        <img
-          class="img-fluid"
-          src="@/assets/boolflix-logo.png"
-          alt="logo boolflix"
-        />
+      <div>
+        <!-- LOGO -->
+        <div class="logo">
+          <img
+            class="img-fluid"
+            src="@/assets/boolflix-logo.png"
+            alt="logo boolflix"
+          />
+        </div>
+        <!-- NAVBAR -->
+        <!-- to-do -->
       </div>
-      <!-- NAVBAR -->
-      <!-- to-do -->
-    </div>
-    <!-- INPUT AREA -->
-    <div class="input-area">
-      <input
-        type="text"
-        placeholder="Search"
-        v-model="keywordSearch"
-        @keyup.enter="$emit('search', keywordSearch)"
-      />
-      <div class="button" @click="$emit('search', keywordSearch)">Search</div>
+      <!-- INPUT AREA -->
+      <div class="input-area">
+        <input
+          type="text"
+          placeholder="Search"
+          v-model="keywordSearch"
+          @keyup="$emit('search', keywordSearch)"
+        />
+        <div class="button" @click="$emit('search', keywordSearch)">Search</div>
+      </div>
     </div>
   </header>
 </template>
@@ -38,10 +40,15 @@ export default {
 <style lang="scss" scoped>
 header {
   background: #1b1b1b;
-  padding: 15px 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  position: fixed;
+  top: 0;
+  z-index: 1;
+  >div{
+    padding: 15px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .logo {
     width: 150px;
   }
