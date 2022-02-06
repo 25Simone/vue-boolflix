@@ -16,6 +16,7 @@
             <li> <a href="/">Home</a></li>
             <li> <a href="#tv-series">TvSeries</a></li>
             <li> <a href="#movies">Movies</a></li>
+            <li> <a href="/">La tua lista</a></li>
           </ul>
         </nav>
       </div>
@@ -50,7 +51,7 @@ header {
   background: #1b1b1b;
   position: fixed;
   top: 0;
-  z-index: 1;
+  z-index: 5;
   .header-content{
     padding: 15px 25px;
     display: flex;

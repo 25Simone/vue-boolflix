@@ -57,7 +57,9 @@ export default {
 <style lang="scss" scoped>
 .card{
     padding: 0;
-    border: 2px solid #1b1b1b;
+    border-left: 2px solid #1b1b1b;
+    border-right: 2px solid #1b1b1b;
+    background: transparent;
     cursor: pointer;
     .card-img{
         width: 100%;
