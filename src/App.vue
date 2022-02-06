@@ -1,11 +1,12 @@
 <template>
   <div id="app">
     <header-box @search="searchResults" />
+    <trailer-box v-if="movieTrailer" />
     <main-content
     :moviesCards="moviesResultsList"
     :seriesCards="seriesResultsList"
-    :movieSectionTitle="movieSection"
-    :tvSEriesSectionTitle="tvSeriesSection"
+    :movieSectionTitle="movieSectionTitle"
+    :tvSEriesSectionTitle="tvSeriesSectionTitle"
     />
   </div>
 </template>
@@ -14,12 +15,14 @@
 import axios from "axios";
 import HeaderBox from "./components/HeaderBox.vue";
 import MainContent from "./components/MainContent.vue";
+import TrailerBox from "./components/TrailerBox.vue";
 
 export default {
   name: "App",
   components: {
     HeaderBox,
     MainContent,
+    TrailerBox,
   },
   data() {
     return {
@@ -28,27 +31,34 @@ export default {
       seriesResultsList: [],
       // API KEY
       api_key: '0b8af459fa891cf5a8cc79e1ded434fb',
-      movieSection: '',
-      tvSeriesSection: '',
+      movieSectionTitle: '',
+      tvSeriesSectionTitle: '',
+      movieTrailer: true,
     };
   },
   mounted() {
-    this.generalMovieApiCall('movie', 'popular', 'page', 1);
-    this.movieSection = 'I film più popolari su Netflix:';
-    this.generalTvApiCall('tv', 'popular', 'page', 1);
-    this.tvSeriesSection = 'Le serie Tv più popolari su Netflix:';
+    // HOME PAGE WITH POPULAR MOVIES AND TV SERIES
+      this.generalMovieApiCall('movie', 'popular', 'page', 1);
+      this.movieSectionTitle = 'I film più popolari su Netflix:';
+      this.generalTvApiCall('tv', 'popular', 'page', 1);
+      this.tvSeriesSectionTitle = 'Le serie Tv più popolari su Netflix:';
   },
 
   methods: {
+    // FUNCTION TO SHOW THE SEARCH'S RESULTS
     searchResults(keyword){
       if(keyword != '') {
-      this.generalMovieApiCall('search', 'movie', 'query', keyword);
-      this.generalTvApiCall('search', 'tv', 'query', keyword);
+        this.generalMovieApiCall('search', 'movie', 'query', keyword);
+        this.movieSectionTitle = 'Film in base alla tua ricerca:';
+        this.generalTvApiCall('search', 'tv', 'query', keyword);
+        this.tvSeriesSectionTitle = 'Serie tv in base alla tua ricerca:';
+        this.movieTrailer = false;
       } else {
-        this.generalMovieApiCall('movie', 'popular', 'page', 1)
-        this.movieSection = 'I film più popolari su Netflix:'
-        this.generalTvApiCall('tv', 'popular', 'page', 1)
-        this.tvSeriesSection = 'Le serie Tv più popolari su Netflix:'
+        this.generalMovieApiCall('movie', 'popular', 'page', 1);
+        this.movieSectionTitle = 'I film più popolari su Netflix:';
+        this.generalTvApiCall('tv', 'popular', 'page', 1);
+        this.tvSeriesSectionTitle = 'Le serie Tv più popolari su Netflix:';
+        this.movieTrailer = true;
       }
     },
     

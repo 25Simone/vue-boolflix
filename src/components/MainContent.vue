@@ -92,7 +92,7 @@ main {
   padding-top: 100px;
 }
 .container-fluid {
-  margin: 70px 0;
+  margin: 120px 0;
   .row {
     flex-wrap: nowrap;
     overflow-x: hidden;

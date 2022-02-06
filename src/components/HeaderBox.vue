@@ -16,7 +16,7 @@
             <li> <a href="/">Home</a></li>
             <li> <a href="#tv-series">TvSeries</a></li>
             <li> <a href="#movies">Movies</a></li>
-            <li> <a href="/">La tua lista</a></li>
+            <li> <a href="/">La mia lista</a></li>
           </ul>
         </nav>
       </div>
