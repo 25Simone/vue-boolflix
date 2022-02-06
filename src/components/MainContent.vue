@@ -89,10 +89,10 @@ export default {
 @import '@/style/variables.scss';
 
 main {
-  padding-top: 100px;
+
 }
 .container-fluid {
-  margin: 120px 0;
+  margin: 150px 0;
   .row {
     flex-wrap: nowrap;
     overflow-x: hidden;

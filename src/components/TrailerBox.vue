@@ -74,21 +74,22 @@ export default {
         color: $primary-text-color;
         font-size: 70px;
         right: 50px;
-        bottom: 70px;
+        bottom: 10%;
         >span{
             margin: 0 30px;
         }
     }
     #trailer-message{
         font-size: 55px;
+        font-weight: 500;
         color: $primary-text-color;
-        top: 100px;
-        left: 50px;
+        top: 9%;
+        left: 3%;
     }
     img{
         width: 500px;
-        bottom: 250px;
-        left: 50px;
+        bottom: 30%;
+        left: 3%;
     }
     #play-movie-trailer.button{
         border-radius: 10px;
@@ -96,8 +97,8 @@ export default {
         background: $primary-text-color;
         color: #000;
         font-size: 25px;
-        left: 50px;
-        bottom: 100px;
+        left: 3%;
+        bottom: 10%;
         a{
             text-decoration: none;
             color: #000;
