@@ -41,7 +41,6 @@ export default {
 
   methods: {
     searchResults(keyword){
-      console.log(keyword)
       if(keyword != '') {
       this.generalMovieApiCall('search', 'movie', 'query', keyword);
       this.generalTvApiCall('search', 'tv', 'query', keyword);
@@ -64,7 +63,6 @@ export default {
     async callApi(command, type, query, keyword) {
 
       const results = await axios.get(`https://api.themoviedb.org/3/${command}/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
-        console.log('Api risposta'); // DEBUG
         return response.data.results;
       })
       return results;
