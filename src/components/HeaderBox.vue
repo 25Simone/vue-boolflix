@@ -17,6 +17,19 @@
             <li> <a href="#tv-series">TvSeries</a></li>
             <li> <a href="#movies">Movies</a></li>
             <li> <a href="/">La mia lista</a></li>
+            <li>
+              <!-- GENRES SELECT -->
+              <select name="genres">
+                <option value="">All</option>
+                <option
+                v-for="genre in genres"
+                :key="genre.id"
+                :value="genre.id"
+                >
+                  {{genre.name}}
+                </option>
+              </select>
+            </li>
           </ul>
         </nav>
       </div>
@@ -36,6 +49,9 @@
 
 <script>
 export default {
+  props: {
+    genres: Array,
+  },
   data() {
     return {
       keywordSearch: "",

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <header-box @search="searchResults" />
+    <header-box @search="searchResults" :genres="genresList"/>
     <trailer-box v-if="movieTrailer" />
     <main-content
     :moviesCards="moviesResultsList"
@@ -34,6 +34,7 @@ export default {
       movieSectionTitle: '',
       tvSeriesSectionTitle: '',
       movieTrailer: true,
+      genresList: [],
     };
   },
   mounted() {
@@ -43,6 +44,7 @@ export default {
       this.generalTvApiCall('tv', 'popular', 'page', 1);
       this.tvSeriesSectionTitle = 'Le serie Tv più popolari su Netflix:';
       // GENRES LIST
+      this.genresApiCall('genre', 'movie/list', 'language', 'en-Us')
   },
 
   methods: {
@@ -62,6 +64,11 @@ export default {
         this.movieTrailer = true;
       }
     },
+
+    async genresApiCall(command, type, query, keyword) {
+      this.genresList = await this.callApiGenres(command, type, query, keyword);
+      console.log(this.genresList)
+    },
     
     async generalMovieApiCall(command, type, query, keyword) {
       this.moviesResultsList = await this.callApi(command, type, query, keyword);
@@ -75,6 +82,13 @@ export default {
 
       const results = await axios.get(`https://api.themoviedb.org/3/${command}/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
         return response.data.results;
+      })
+      return results;
+    },
+    async callApiGenres(command, type, query, keyword) {
+
+      const results = await axios.get(`https://api.themoviedb.org/3/${command}/${type}?${query}=${keyword}&api_key=${this.api_key}`).then((response) => {
+        return response.data.genres;
       })
       return results;
     },
