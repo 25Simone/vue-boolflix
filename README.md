@@ -4,5 +4,5 @@ The project is made in <strong>html</strong>, <strong>css</strong> and <strong>j
 <hr />
 
 <video width="320" height="240" muted>
-  <source src="assets/vue-boolflix-screen-rec.mp4" type="video/mp4">
+  <source src="./src/assets/vue-boolflix-screen-rec.mp4" type="video/mp4">
 </video>
