@@ -18,9 +18,10 @@
             <li> <a href="#movies">Movies</a></li>
             <li> <a href="/">La mia lista</a></li>
             <li>
-              <!-- GENRES SELECT -->
-              <select name="genres">
-                <option value="">All</option>
+              <!-- SELECT GENRES -->
+              <select name="genres" v-model="selectedGenre" @change="$emit('filterGenres', selectedGenre)">
+                <option value='' disabled>Genere</option>
+                <option value="all">All</option>
                 <option
                 v-for="genre in genres"
                 :key="genre.id"
@@ -55,6 +56,7 @@ export default {
   data() {
     return {
       keywordSearch: "",
+      selectedGenre: "",
     };
   },
 };
@@ -101,6 +103,18 @@ header {
           text-decoration: none;
           &:hover{
             color: $primary-text-color;
+          }
+        }
+        select{
+          background: #1b1b1b;
+          color: $secondary-text-color;
+          border: none;
+          option{
+            background: #1b1b1b;
+            color: $secondary-text-color;
+            &:hover{
+              color: $primary-text-color;
+            }
           }
         }
       }

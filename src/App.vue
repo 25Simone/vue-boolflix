@@ -1,10 +1,14 @@
 <template>
   <div id="app">
-    <header-box @search="searchResults" :genres="genresList"/>
+    <header-box
+    @search="searchResults"
+    :genres="genresList"
+    @filterGenres="filterByGenres"
+    />
     <!-- <trailer-box v-if="movieTrailer" /> -->
     <main-content
-    :moviesCards="moviesResultsList"
-    :seriesCards="seriesResultsList"
+    :moviesCards="filteredMoviesResultsList"
+    :seriesCards="filteredSeriesResultsList"
     :movieSectionTitle="movieSectionTitle"
     :tvSEriesSectionTitle="tvSeriesSectionTitle"
     />
@@ -28,7 +32,9 @@ export default {
     return {
       // SEARCH RESULTS LIST
       moviesResultsList: [],
+      filteredMoviesResultsList: [],
       seriesResultsList: [],
+      filteredSeriesResultsList: [],
       // API KEY
       api_key: '0b8af459fa891cf5a8cc79e1ded434fb',
       movieSectionTitle: '',
@@ -73,10 +79,12 @@ export default {
     
     async generalMovieApiCall(command, type, query, keyword) {
       this.moviesResultsList = await this.callApi(command, type, query, keyword);
+      this.filteredMoviesResultsList = await this.callApi(command, type, query, keyword);
     },
 
     async generalTvApiCall(command, type, query, keyword) {
       this.seriesResultsList = await this.callApi(command, type, query, keyword);
+      this.filteredSeriesResultsList = await this.callApi(command, type, query, keyword);
     },
 
     async callApi(command, type, query, keyword) {
@@ -86,6 +94,16 @@ export default {
       })
       return results;
     },
+
+    filterByGenres(keyword){
+      this.filteredMoviesResultsList = this.moviesResultsList.filter((element) => {
+        return element.genre_ids.includes(keyword) || keyword === 'all';
+      });
+      this.filteredSeriesResultsList = this.seriesResultsList.filter((element) => {
+        return element.genre_ids.includes(keyword) || keyword === 'all';
+      });
+    },
+    
   },
 };
 </script>
