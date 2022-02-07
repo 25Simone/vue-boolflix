@@ -88,9 +88,6 @@ export default {
 <style lang="scss" scoped>
 @import '@/style/variables.scss';
 
-main {
-
-}
 .container-fluid {
   margin: 150px 0;
   .row {

@@ -22,16 +22,7 @@
                 <li>
                     <strong>Voto: </strong>
                     <!-- STARS -->
-                    <span
-                    class="stars"
-                    v-for="(star, index) in 5"
-                    :key="index"
-                    >
-                        <!-- FULL STARS -->
-                        <i v-if="index <= Math.floor(card.vote_average / 2)" class="fas fa-star"></i>
-                        <!-- EMPTY STARS -->
-                        <i v-else class="far fa-star"></i>
-                    </span>
+                    <stars-rateing :rate="card.vote_average" />
                 </li>
             </ul>
         </div>
@@ -39,7 +30,12 @@
 </template>
 
 <script>
+import StarsRateing from './StarsRateing.vue';
+
 export default {
+    components: {
+        StarsRateing,
+    },
     props: {
         card: Object,
         name:String,

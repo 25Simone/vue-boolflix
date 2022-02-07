@@ -42,6 +42,7 @@ export default {
       this.movieSectionTitle = 'I film più popolari su Netflix:';
       this.generalTvApiCall('tv', 'popular', 'page', 1);
       this.tvSeriesSectionTitle = 'Le serie Tv più popolari su Netflix:';
+      // GENRES LIST
   },
 
   methods: {
