@@ -38,8 +38,8 @@ export default {
     },
     props: {
         card: Object,
-        name:String,
-        originalName:String,
+        name: String,
+        originalName: String,
     },
     methods: {
         // LANGUAGE FLAG PATH FUNCTION

@@ -5,7 +5,7 @@
     :genres="genresList"
     @filterGenres="filterByGenres"
     />
-    <!-- <trailer-box v-if="movieTrailer" /> -->
+    <trailer-box v-if="movieTrailer" />
     <main-content
     :moviesCards="filteredMoviesResultsList"
     :seriesCards="filteredSeriesResultsList"
@@ -19,27 +19,28 @@
 import axios from "axios";
 import HeaderBox from "./components/HeaderBox.vue";
 import MainContent from "./components/MainContent.vue";
-// import TrailerBox from "./components/TrailerBox.vue";
+import TrailerBox from "./components/TrailerBox.vue";
 
 export default {
   name: "App",
   components: {
     HeaderBox,
     MainContent,
-    // TrailerBox,
+    TrailerBox,
   },
   data() {
     return {
       // SEARCH RESULTS LIST
+      movieSectionTitle: '',
       moviesResultsList: [],
       filteredMoviesResultsList: [],
+      tvSeriesSectionTitle: '',
       seriesResultsList: [],
       filteredSeriesResultsList: [],
       // API KEY
       api_key: '0b8af459fa891cf5a8cc79e1ded434fb',
-      movieSectionTitle: '',
-      tvSeriesSectionTitle: '',
       movieTrailer: true,
+      // GENRES LIST
       genresList: [],
     };
   },
@@ -71,17 +72,18 @@ export default {
       }
     },
 
+    // GENRES API CALL
     async genresApiCall() {
       await axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${this.api_key}&language=en-US`).then((response) => {
         this.genresList = response.data.genres;
       })
     },
-    
+    // MOVIES API CALL
     async generalMovieApiCall(command, type, query, keyword) {
       this.moviesResultsList = await this.callApi(command, type, query, keyword);
       this.filteredMoviesResultsList = await this.callApi(command, type, query, keyword);
     },
-
+    // TV SERIES API CALL
     async generalTvApiCall(command, type, query, keyword) {
       this.seriesResultsList = await this.callApi(command, type, query, keyword);
       this.filteredSeriesResultsList = await this.callApi(command, type, query, keyword);
@@ -95,6 +97,7 @@ export default {
       return results;
     },
 
+    // FUNCTION TO FILTER THE RESULTS BY GENRES
     filterByGenres(keyword){
       this.filteredMoviesResultsList = this.moviesResultsList.filter((element) => {
         return element.genre_ids.includes(keyword) || keyword === 'all';
@@ -103,7 +106,6 @@ export default {
         return element.genre_ids.includes(keyword) || keyword === 'all';
       });
     },
-    
   },
 };
 </script>
