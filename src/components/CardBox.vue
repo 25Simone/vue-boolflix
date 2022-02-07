@@ -15,8 +15,7 @@
                 <!-- LANGUAGE -->
                 <li>
                     <strong>Lingua originale:</strong>
-                    <span v-if="card.original_language == null">Non pervenuta</span>
-                    <img class="flag" v-else :src="languagesflags(card.original_language)" alt="languages flag">
+                    <linguages-flags :card="card"/>
                 <li>
                 <!-- VOTE -->
                 <li>
@@ -31,10 +30,12 @@
 
 <script>
 import StarsRateing from './StarsRateing.vue';
+import LinguagesFlags from './LinguagesFlags.vue'
 
 export default {
     components: {
         StarsRateing,
+        LinguagesFlags,
     },
     props: {
         card: Object,
@@ -42,10 +43,7 @@ export default {
         originalName: String,
     },
     methods: {
-        // LANGUAGE FLAG PATH FUNCTION
-        languagesflags(language){
-            return "/flags/" + language + ".png";
-        }
+        
     }
 }
 </script>

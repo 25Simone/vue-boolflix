@@ -14,6 +14,9 @@
           :name="card.title"
           :originalName="card.original_title"
         />
+        <div v-if="moviesCards.length == 0 " class="not-found-message">
+          <p >Ci dispiace, non sono stati prodotti risultati in base alla tua ricerca</p>
+        </div>
         <!-- NEXT BUTTON -->
         <div class="slider-commands next" @click="moviesGoNext('movies-row')"> <i class="fas fa-chevron-right"></i> </div>
       </div>
@@ -33,6 +36,9 @@
           :name="card.name"
           :originalName="card.original_name"
         />
+        <div v-if="seriesCards.length == 0 " class="not-found-message">
+          <p >Ci dispiace, non sono stati prodotti risultati in base alla tua ricerca</p>
+        </div>
         <!-- NEXT BUTTON -->
         <div class="slider-commands next" @click="seriesGoNext('tv-series-row')"> <i class="fas fa-chevron-right"></i> </div>
       </div>
@@ -121,5 +127,11 @@ export default {
       margin-right: -50px;
     }
   }
+}
+.not-found-message{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
 }
 </style>
